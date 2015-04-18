@@ -1,0 +1,44 @@
+//
+//  PrefixHeader.pch
+//  WeChat
+//
+//  Created by 刘超 on 15/4/17.
+//  Copyright (c) 2015年 Leo. All rights reserved.
+//
+
+#ifndef WeChat_PrefixHeader_pch
+#define WeChat_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import "CategoryWF.h"
+#import "WCBaseViewController.h"
+#import "LCProgressHUD.h"
+
+// 是iPad
+#define IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+// 是3.5寸以下屏幕
+#define SCREEN_3_5 self.view.frame.size.height < 500.0f
+// 是4寸以下屏幕
+#define SCREEN_4 self.view.frame.size.height < 600.0f
+// 是4.7寸以下屏幕
+#define SCREEN_4_7 self.view.frame.size.height < 700.0f
+
+// 获得RGB颜色
+#define WCColor(r, g, b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.0f]
+// 微信绿
+#define WXGreen WCColor(44, 187, 6)
+
+// 网络超时时间
+#define Timeout 10.0f
+
+// 自定义打印信息
+#ifdef DEBUG
+    #define WCLog(...) NSLog(@"%s--Line:%d\n> %@", __func__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+    #define WCLog(...)
+#endif
+
+#endif
