@@ -37,15 +37,15 @@
 
 @implementation AppDelegate
 
-///** iPhone禁止旋转 iPad可以旋转 */
-//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    
-//    if (!IPAD) {
-//        return UIInterfaceOrientationMaskPortrait;
-//    } else {
-//        return UIInterfaceOrientationMaskAll;
-//    }
-//}
+/** iPhone禁止旋转 iPad可以旋转 */
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    
+    if (!IPAD) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskAll;
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
