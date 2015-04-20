@@ -52,6 +52,16 @@
     
     [WCNavigationController setupNavTheme];
     
+    // 从沙盒加载用户信息单例
+    [[WCUserInfo sharedWCUserInfo] loadUserInfoToSandbox];
+    
+    if ([WCUserInfo sharedWCUserInfo].isLogined) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        self.window.rootViewController = storyboard.instantiateInitialViewController;
+        [self xmppLogin:nil];
+    }
+    
     return YES;
 }
 
@@ -74,7 +84,7 @@
         [self setupXMPPStream];
     }
     
-    NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    NSString *user = [WCUserInfo sharedWCUserInfo].user;
     
     XMPPJID *myJID = [XMPPJID jidWithUser:user domain:@"leo.local" resource:@"iPhone"];    // 用户JID
     _xmppStream.myJID = myJID;
@@ -94,7 +104,7 @@
     
     WCLog(@"开始授权");
     
-    NSString *pwd = [[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"];
+    NSString *pwd = [WCUserInfo sharedWCUserInfo].pwd;
     
     NSError *error = nil;
     [_xmppStream authenticateWithPassword:pwd error:&error];
@@ -174,6 +184,10 @@
     [_xmppStream sendElement:lineOut];
     
     [_xmppStream disconnect];
+    
+    // 回到LoginViewController
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    self.window.rootViewController = storyboard.instantiateInitialViewController;
 }
 
 @end

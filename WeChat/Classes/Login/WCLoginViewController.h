@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Leo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "WCBaseLoginViewController.h"
 
-@interface WCLoginViewController : WCBaseViewController
+@interface WCLoginViewController : WCBaseLoginViewController
 
 @end

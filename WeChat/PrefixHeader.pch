@@ -14,8 +14,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CategoryWF.h"
-#import "WCBaseViewController.h"
 #import "LCProgressHUD.h"
+#import "WCUserInfo.h"
 
 // 是iPad
 #define IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

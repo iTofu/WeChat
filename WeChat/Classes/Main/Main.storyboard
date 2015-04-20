@@ -161,7 +161,7 @@
         <!--Root View Controller-->
         <scene sceneID="0HN-bB-uRc">
             <objects>
-                <tableViewController id="5xo-st-f8Y" sceneMemberID="viewController">
+                <tableViewController id="5xo-st-f8Y" customClass="WCMeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7Ut-xF-n4S">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,7 +179,15 @@
                             <outlet property="delegate" destination="5xo-st-f8Y" id="dPV-M4-wp9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="cRg-dE-S1E"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="cRg-dE-S1E">
+                        <barButtonItem key="rightBarButtonItem" title="注销" id="qjf-Mx-0Me">
+                            <connections>
+                                <action selector="loginOut:" destination="5xo-st-f8Y" id="TRg-vn-aD1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7i-Bg-AoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

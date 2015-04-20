@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UIView *midBgView;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
 
@@ -42,6 +43,8 @@
     
     [super viewDidLoad];
     
+    self.userLabel.text = [WCUserInfo sharedWCUserInfo].user;
+    
     self.pwdBgView.image = [UIImage stretchedImageWithName:@"operationbox_text"];
     
     [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"fts_green_btn"]
@@ -63,6 +66,13 @@
                                                      name:UIKeyboardWillChangeFrameNotification
                                                    object:nil];
     }
+    
+    [self.pwdField addTarget:self action:@selector(pwdChanged:) forControlEvents:UIControlEventEditingChanged];
+}
+
+- (void)pwdChanged:(UITextField *)textField {
+    
+    self.loginBtn.enabled = ![textField.text isEqualToString:@""] && textField.text.length;
 }
 
 - (void)kbFrmWillChanged:(NSNotification *)not {
@@ -85,6 +95,11 @@
                      } completion:nil];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.view endEditing:YES];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [self userLogin];
@@ -92,57 +107,57 @@
     return YES;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+/** 即将进行Modal跳转时执行此方法 */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     [self.view endEditing:YES];
 }
 
-- (IBAction)changeAccount {
-    
-    [self.view endEditing:YES];
-    
-    if (!IPAD) {
-        
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"取消"
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"手机号", @"微信号/邮箱地址/QQ号", nil];
-        sheet.actionSheetStyle = UIActionSheetStyleDefault;
-        [sheet showInView:self.view];
-        
-    } else {
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
-                                                                                 message:nil
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"手机号"
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction *action) {
-                                                                
-                                                                [self presentOtherLoginViewController];
-                                                                
-                                                            }];
-        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"微信号/邮箱地址/QQ号"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction *action) {
-                                                                 
-                                                                 [self presentOtherLoginViewController];
-                                                             }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                               style:UIAlertActionStyleDestructive
-                                                             handler:^(UIAlertAction *action) {
-                                                                 
-                                                                 [alertController dismissViewControllerAnimated:YES completion:nil];
-                                                             }];
-        
-        [alertController addAction:firstAction];
-        [alertController addAction:secondAction];
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
-}
+///** 切换账号 AlertView方式 */
+//- (IBAction)changeAccount {
+//    
+//    [self.view endEditing:YES];
+//    
+//    if (!IPAD) {
+//        
+//        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"取消"
+//                                             destructiveButtonTitle:nil
+//                                                  otherButtonTitles:@"手机号", @"微信号/邮箱地址/QQ号", nil];
+//        sheet.actionSheetStyle = UIActionSheetStyleDefault;
+//        [sheet showInView:self.view];
+//        
+//    } else {
+//        
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+//                                                                                 message:nil
+//                                                                          preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"手机号"
+//                                                              style:UIAlertActionStyleDefault
+//                                                            handler:^(UIAlertAction *action) {
+//                                                                [self presentOtherLoginViewController];
+//                                                            }];
+//        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"微信号/邮箱地址/QQ号"
+//                                                               style:UIAlertActionStyleDefault
+//                                                             handler:^(UIAlertAction *action) {
+//                                                                 
+//                                                                 [self presentOtherLoginViewController];
+//                                                             }];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+//                                                               style:UIAlertActionStyleDestructive
+//                                                             handler:^(UIAlertAction *action) {
+//                                                                 
+//                                                                 [alertController dismissViewControllerAnimated:YES completion:nil];
+//                                                             }];
+//        
+//        [alertController addAction:firstAction];
+//        [alertController addAction:secondAction];
+//        [alertController addAction:cancelAction];
+//        [self presentViewController:alertController animated:YES completion:nil];
+//    }
+//}
 
 /** Modal推出其他登录方式控制器 */
 - (void)presentOtherLoginViewController {
@@ -174,25 +189,11 @@
 
     [self.view endEditing:YES];
     
-    [LCProgressHUD showWaittingText:@"请稍候..."];
+    WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
+    userInfo.user = self.userLabel.text;
+    userInfo.pwd = self.pwdField.text;
     
-    [NSTimer scheduledTimerWithTimeInterval:2.0f
-                                     target:self
-                                   selector:@selector(showInfo)
-                                   userInfo:nil
-                                    repeats:NO];
-}
-
-- (void)showInfo {
-    
-    [LCProgressHUD hide];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请使用其他登录方式。"
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:@"确定", nil];
-    [alert show];
+    [super login];
 }
 
 @end
