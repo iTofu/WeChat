@@ -17,6 +17,8 @@
 #import "LCProgressHUD.h"
 #import "WCUserInfo.h"
 
+// 是iOS8以上
+#define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0f)
 // 是iPad
 #define IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 // 是3.5寸以下屏幕

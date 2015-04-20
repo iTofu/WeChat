@@ -21,22 +21,11 @@
 
 - (IBAction)loginOut:(id)sender {
     
-    if (!IPAD) {
-
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"你确定要注销吗？"
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"确定", @"取消", nil];
-        sheet.destructiveButtonIndex = 0;
-        [sheet showInView:self.view];
-
-    } else {
-
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
-                                                                                 message:nil
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-
+    if (IPAD && IOS8) { // 当为iPad并且是iOS8以上系统时使用UIAlertController控件
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你确定要注销吗？"
+                                                                       message:nil
+                                                                preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定"
                                                               style:UIAlertActionStyleDestructive
                                                             handler:^(UIAlertAction *action) {
@@ -45,13 +34,23 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction *action) {
-
-                                                                 [alertController dismissViewControllerAnimated:YES completion:nil];
+                                                                 [alert dismissViewControllerAnimated:YES
+                                                                                           completion:nil];
                                                              }];
+        
+        [alert addAction:firstAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
 
-        [alertController addAction:firstAction];
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"你确定要注销吗？"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:@"确定", @"取消", nil];
+        sheet.destructiveButtonIndex = 0;
+        [sheet showInView:self.view];
     }
 }
 

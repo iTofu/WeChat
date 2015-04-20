@@ -63,8 +63,6 @@
     [[WCUserInfo sharedWCUserInfo] setLogined:YES];
     [[WCUserInfo sharedWCUserInfo] saveUserInfoToSandbox];
     
-    [self dismissViewControllerAnimated:NO completion:nil];
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.view.window.rootViewController = storyboard.instantiateInitialViewController;
 }

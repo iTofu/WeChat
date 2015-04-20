@@ -39,7 +39,9 @@
     UITabBar *tabBar = [UITabBar appearance];
     tabBar.tintColor = WXGreen;
     tabBar.barTintColor = WCColor(248, 248, 248);
-    tabBar.translucent = NO;
+    if (IOS8) {
+        tabBar.translucent = NO;
+    }
 }
 
 @end
