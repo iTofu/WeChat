@@ -38,10 +38,12 @@
     self.userBgView.image = [UIImage stretchedImageWithName:@"OtherLoginTop"];
     self.pwdBgView.image = [UIImage stretchedImageWithName:@"OtherLoginBtom"];
     
-    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"fts_green_btn"]
+    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"GreenBigBtn"]
                              forState:UIControlStateNormal];
-    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"fts_green_btn_HL"]
+    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"GreenBigBtnHighlight"]
                              forState:UIControlStateHighlighted];
+    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"GreenBigBtnDisable"]
+                             forState:UIControlStateDisabled];
     
     if (!IPAD) {
         

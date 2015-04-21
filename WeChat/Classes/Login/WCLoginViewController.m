@@ -47,10 +47,12 @@
     
     self.pwdBgView.image = [UIImage stretchedImageWithName:@"operationbox_text"];
     
-    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"fts_green_btn"]
+    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"GreenBigBtn"]
                              forState:UIControlStateNormal];
-    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"fts_green_btn_HL"]
+    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"GreenBigBtnHighlight"]
                              forState:UIControlStateHighlighted];
+    [self.loginBtn setBackgroundImage:[UIImage stretchedImageWithName:@"GreenBigBtnDisable"]
+                             forState:UIControlStateDisabled];
     [self.registerBtn setBackgroundImage:[UIImage stretchedImageWithName:@"operationbox_text"]
                                 forState:UIControlStateNormal];
     
