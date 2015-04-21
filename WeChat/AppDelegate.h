@@ -14,7 +14,11 @@ typedef enum {
     /** 登录失败 */
     XMPPResultTypeLoginFailure,
     /** 网络错误 */
-    XMPPResultTypeNetError
+    XMPPResultTypeNetError,
+    /** 注册成功 */
+    XMPPResultTypeRegisterSuccess,
+    /** 注册失败 */
+    XMPPResultTypeRegisterFailure
 }XMPPResultType;
 
 /** XMPP的请求结果 */
@@ -24,9 +28,10 @@ typedef void (^XMPPResultBlock)(XMPPResultType type);
 
 @property (strong, nonatomic) UIWindow *window;
 
+/** 注册 */
+- (void)xmppRegister:(XMPPResultBlock)resultBlock;
 /** 登录 */
-- (void)xmppLogin:(XMPPResultBlock)reslutBlock;
-
+- (void)xmppLogin:(XMPPResultBlock)resultBlock;
 /** 注销 */
 - (void)xmppLogout;
 

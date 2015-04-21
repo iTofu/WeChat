@@ -37,7 +37,7 @@
 
 @implementation AppDelegate
 
-/** iPhone禁止旋转 iPad可以旋转 */
+/** iPhone禁止旋转 iPad允许旋转 */
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     
     if (!IPAD) {
@@ -66,7 +66,7 @@
 }
 
 #pragma mark - 登录流程
-// 初始化XMPPStream
+#pragma mark 初始化XMPPStream
 - (void)setupXMPPStream {
     
     _xmppStream = [[XMPPStream alloc] init];
@@ -75,7 +75,7 @@
                delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
 
-// 连接到服务器[传一个JID]
+#pragma mark 连接到服务器[传一个JID]
 - (void)connectToHost {
     
     WCLog(@"开始连接服务器");
@@ -84,7 +84,12 @@
         [self setupXMPPStream];
     }
     
-    NSString *user = [WCUserInfo sharedWCUserInfo].user;
+    NSString *user = nil;
+    if ([WCUserInfo sharedWCUserInfo].isRegisterOperation) {    // 注册账号
+        user = [WCUserInfo sharedWCUserInfo].registerUser;
+    } else {                                                    // 登录账号
+        user = [WCUserInfo sharedWCUserInfo].user;
+    }
     
     XMPPJID *myJID = [XMPPJID jidWithUser:user domain:@"leo.local" resource:@"iPhone"];    // 用户JID
     _xmppStream.myJID = myJID;
@@ -99,11 +104,23 @@
     }
 }
 
-// 连接到服务成功后，再发送密码授权
+#pragma mark 连接到服务成功后，再发送密码注册
+- (void)sendPwdToHostRegister {
+    
+    WCLog(@"开始注册");
+    NSString *pwd = [WCUserInfo sharedWCUserInfo].registerPwd;
+    
+    NSError *error = nil;
+    [_xmppStream registerWithPassword:pwd error:&error];
+    if (error) {
+        WCLog(@"%@", error);
+    }
+}
+
+#pragma mark 连接到服务成功后，再发送密码授权
 - (void)sendPwdToHost {
     
     WCLog(@"开始授权");
-    
     NSString *pwd = [WCUserInfo sharedWCUserInfo].pwd;
     
     NSError *error = nil;
@@ -113,7 +130,7 @@
     }
 }
 
-// 授权成功后，发送`在线`消息
+#pragma mark 授权成功后，发送`在线`消息
 - (void)sendOnlineToHost {
     
     WCLog(@"发送`在线`消息");
@@ -123,14 +140,20 @@
 }
 
 #pragma mark - XMPPStreamDelegate 方法
-
+#pragma mark 连接服务器成功
 - (void)xmppStreamDidConnect:(XMPPStream *)sender {
     
     WCLog(@"连接服务器成功");
     
-    [self sendPwdToHost];
+    if ([WCUserInfo sharedWCUserInfo].isRegisterOperation) {    // 注册
+        [self sendPwdToHostRegister];
+    } else {
+        [self sendPwdToHost];                                   // 登录
+    }
+    
 }
 
+#pragma mark 与服务器断开连接
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error {
     
     WCLog(@"与服务器断开连接--%@", error);
@@ -140,44 +163,75 @@
     }
 }
 
+#pragma mark 授权成功
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender {
     
     WCLog(@"授权成功");
-    
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginSuccess);
     }
     
+    // 发送`在线`消息
     [self sendOnlineToHost];
 }
 
+#pragma mark 授权失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error {
-    
-    WCLog(@"授权失败--%@", error);
     
     [_xmppStream disconnect];
     
+    WCLog(@"授权失败--%@", error);
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginFailure);
     }
 }
 
+#pragma mark 注册成功
+- (void)xmppStreamDidRegister:(XMPPStream *)sender {
+    
+    WCLog(@"注册成功");
+    if (_resultBlock) {
+        _resultBlock(XMPPResultTypeRegisterSuccess);
+    }
+}
+
+#pragma mark 注册失败
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error {
+    
+    WCLog(@"注册失败--%@", error);
+    if (_resultBlock) {
+        _resultBlock(XMPPResultTypeRegisterFailure);
+    }
+}
+
+#pragma mark 发送`在线`消息失败
 - (void)xmppStream:(XMPPStream *)sender didFailToSendPresence:(XMPPPresence *)presence error:(NSError *)error {
     
     WCLog(@"发送`在线`消息失败");
 }
 
-#pragma mark - 登录 & 注销
-
-- (void)xmppLogin:(XMPPResultBlock)reslutBlock {
+#pragma mark - 注册 & 登录 & 注销
+#pragma mark 注册
+- (void)xmppRegister:(XMPPResultBlock)resultBlock {
     
-    _resultBlock = reslutBlock;
+    _resultBlock = resultBlock;
     
     [_xmppStream disconnect];
     
     [self connectToHost];
 }
 
+#pragma mark 登录
+- (void)xmppLogin:(XMPPResultBlock)resultBlock {
+    
+    _resultBlock = resultBlock;
+    
+    [_xmppStream disconnect];
+    
+    [self connectToHost];
+}
+
+#pragma mark 注销
 - (void)xmppLogout {
     
     XMPPPresence *lineOut = [XMPPPresence presenceWithType:@"unavailable"];

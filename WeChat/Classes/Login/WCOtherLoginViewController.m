@@ -52,12 +52,9 @@
         self.rightConstraint.constant = 20.0f;
         self.distanceConstraint.constant = 10.0f;
     }
-    
-    [self.userField addTarget:self action:@selector(fieldChanged) forControlEvents:UIControlEventEditingChanged];
-    [self.pwdField addTarget:self action:@selector(fieldChanged) forControlEvents:UIControlEventEditingChanged];
 }
 
-- (void)fieldChanged {
+- (IBAction)fieldChanged {
     
     self.loginBtn.enabled = self.pwdField.text.length > 0 && self.userField.text.length > 0;
 }

@@ -18,6 +18,13 @@
 /** 是否登录过 */
 @property (nonatomic, assign, getter=isLogined) BOOL logined;
 
+/** 注册账号 */
+@property (nonatomic, copy) NSString *registerUser;
+/** 注册密码 */
+@property (nonatomic, copy) NSString *registerPwd;
+/** 是否是注册 `YES`注册 `NO`登录 */
+@property (nonatomic, assign, getter=isRegisterOperation) BOOL registerOperation;
+
 singleton_interface(WCUserInfo)
 
 /** 保存用户信息到沙盒 */

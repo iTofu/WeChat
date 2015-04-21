@@ -8,8 +8,10 @@
 
 #import "WCLoginViewController.h"
 #import "WCOtherLoginViewController.h"
+#import "WCRegisterViewController.h"
+#import "WCNavigationController.h"
 
-@interface WCLoginViewController () <UITextFieldDelegate, UIActionSheetDelegate>
+@interface WCLoginViewController () <UITextFieldDelegate, UIActionSheetDelegate, WCRegisterViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UIImageView *pwdBgView;
@@ -66,15 +68,13 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(kbFrmWillChanged:)
                                                      name:UIKeyboardWillChangeFrameNotification
-                                                   object:nil];
+                                                   object:self.pwdField];
     }
-    
-    [self.pwdField addTarget:self action:@selector(pwdChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
-- (void)pwdChanged:(UITextField *)textField {
+- (IBAction)fieldChanged {
     
-    self.loginBtn.enabled = ![textField.text isEqualToString:@""] && textField.text.length;
+    self.loginBtn.enabled = self.pwdField.text.length > 0;
 }
 
 - (void)kbFrmWillChanged:(NSNotification *)not {
@@ -109,57 +109,24 @@
     return YES;
 }
 
-/** 即将进行Modal跳转时执行此方法 */
+/** 即将进行Modal跳转时调用此方法 */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     [self.view endEditing:YES];
+    
+    if ([segue.identifier isEqualToString:@"Register"]) {
+        WCNavigationController *nav = segue.destinationViewController;
+        WCRegisterViewController *registerVc = (WCRegisterViewController *)nav.topViewController;
+        registerVc.delegate = self;
+    }
 }
 
-///** 切换账号 AlertView方式 */
-//- (IBAction)changeAccount {
-//    
-//    [self.view endEditing:YES];
-//    
-//    if (!IPAD) {
-//        
-//        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
-//                                                           delegate:self
-//                                                  cancelButtonTitle:@"取消"
-//                                             destructiveButtonTitle:nil
-//                                                  otherButtonTitles:@"手机号", @"微信号/邮箱地址/QQ号", nil];
-//        sheet.actionSheetStyle = UIActionSheetStyleDefault;
-//        [sheet showInView:self.view];
-//        
-//    } else {
-//        
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
-//                                                                                 message:nil
-//                                                                          preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"手机号"
-//                                                              style:UIAlertActionStyleDefault
-//                                                            handler:^(UIAlertAction *action) {
-//                                                                [self presentOtherLoginViewController];
-//                                                            }];
-//        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"微信号/邮箱地址/QQ号"
-//                                                               style:UIAlertActionStyleDefault
-//                                                             handler:^(UIAlertAction *action) {
-//                                                                 
-//                                                                 [self presentOtherLoginViewController];
-//                                                             }];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-//                                                               style:UIAlertActionStyleDestructive
-//                                                             handler:^(UIAlertAction *action) {
-//                                                                 
-//                                                                 [alertController dismissViewControllerAnimated:YES completion:nil];
-//                                                             }];
-//        
-//        [alertController addAction:firstAction];
-//        [alertController addAction:secondAction];
-//        [alertController addAction:cancelAction];
-//        [self presentViewController:alertController animated:YES completion:nil];
-//    }
-//}
+/** 注册成功后调用此方法 */
+- (void)registerViewControllerDidRegisterSuccess:(WCRegisterViewController *)registerVc {
+    
+    self.userLabel.text = [WCUserInfo sharedWCUserInfo].registerUser;
+    self.pwdField.text = nil;
+}
 
 /** Modal推出其他登录方式控制器 */
 - (void)presentOtherLoginViewController {
@@ -194,6 +161,7 @@
     WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
     userInfo.user = self.userLabel.text;
     userInfo.pwd = self.pwdField.text;
+    userInfo.registerOperation = NO;
     
     [super login];
 }
