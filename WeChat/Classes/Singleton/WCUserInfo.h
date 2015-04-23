@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *user;
 /** 密码 */
 @property (nonatomic, copy) NSString *pwd;
-/** 是否登录过 */
+/** 是否已登录 */
 @property (nonatomic, assign, getter=isLogined) BOOL logined;
 
 /** 注册账号 */

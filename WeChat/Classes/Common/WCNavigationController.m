@@ -37,7 +37,7 @@
     
     // 标签栏颜色
     UITabBar *tabBar = [UITabBar appearance];
-    tabBar.tintColor = WXGreen;
+    tabBar.tintColor = WCGreen;
     tabBar.barTintColor = WCColor(248, 248, 248);
     if (IOS8) {
         tabBar.translucent = NO;

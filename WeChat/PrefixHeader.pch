@@ -16,6 +16,7 @@
 #import "CategoryWF.h"
 #import "LCProgressHUD.h"
 #import "WCUserInfo.h"
+#import "WCXMPPTool.h"
 
 // 是iOS8以上
 #define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0f)
@@ -28,10 +29,19 @@
 // 是4.7寸以下屏幕
 #define SCREEN_4_7 self.view.frame.size.height < 700.0f
 
+// 屏幕尺寸
+#define WINSIZE [UIScreen mainScreen].bounds.size
+
 // 获得RGB颜色
 #define WCColor(r, g, b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.0f]
 // 微信绿
-#define WXGreen WCColor(44, 187, 6)
+#define WCGreen WCColor(44, 187, 6)
+// 微信黑
+#define WCBlack WCColor(46, 49, 50)
+// 微信灰
+#define WCDark WCColor(111, 115, 117)
+// 微信白
+#define WCWhite WCColor(244, 244, 244)
 
 // 网络超时时间
 #define Timeout 10.0f

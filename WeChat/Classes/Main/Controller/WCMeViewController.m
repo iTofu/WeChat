@@ -8,12 +8,18 @@
 
 #import "WCMeViewController.h"
 #import "AppDelegate.h"
+#import "WCActionView.h"
 
-@interface WCMeViewController () <UIActionSheetDelegate>
+@interface WCMeViewController () <UIAlertViewDelegate, WCActionViewDelegate>
 
 @end
 
 @implementation WCMeViewController
+
+- (void)dealloc {
+    
+    WCLog(@"%s", __func__);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,55 +27,74 @@
 
 - (IBAction)loginOut:(id)sender {
     
-    if (IPAD && IOS8) { // 当为iPad并且是iOS8以上系统时使用UIAlertController控件
+    if (IPAD) { // 当为iPad并且是iOS8以上系统时使用UIAlertController控件
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你确定要注销吗？"
-                                                                       message:nil
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定"
-                                                              style:UIAlertActionStyleDestructive
-                                                            handler:^(UIAlertAction *action) {
-                                                                [self loginOut];
-                                                            }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction *action) {
-                                                                 [alert dismissViewControllerAnimated:YES
-                                                                                           completion:nil];
-                                                             }];
-        
-        [alert addAction:firstAction];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        if (IOS8) {
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你确定要注销吗？"
+                                                                           message:nil
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定"
+                                                                  style:UIAlertActionStyleDestructive
+                                                                handler:^(UIAlertAction *action) {
+                                                                    [alert dismissViewControllerAnimated:NO
+                                                                                              completion:nil];
+                                                                    [self actionViewDidClickOkBtn:nil];
+                                                                }];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction *action) {
+                                                                     [alert dismissViewControllerAnimated:YES
+                                                                                               completion:nil];
+                                                                 }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:firstAction];
+            [self presentViewController:alert animated:YES completion:nil];
+
+        } else {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"你确定要注销吗？"
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
 
     } else {
         
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"你确定要注销吗？"
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:@"确定", @"取消", nil];
-        sheet.destructiveButtonIndex = 0;
-        [sheet showInView:self.view];
+        WCActionView *actionView = [[WCActionView alloc] init];
+        actionView.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height);
+        [self.view.window addSubview:actionView];
+        [actionView showWarningToView:self.view delegate:self];
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+#pragma mark - WCActionView 代理方法
+
+- (void)actionViewDidClickOkBtn:(WCActionView *)actionView {
     
-    if (buttonIndex == 0) {
-        
-        [self loginOut];
+    [[WCXMPPTool sharedWCXMPPTool] xmppLogout];
+    
+    // 回到LoginViewController
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+}
+
+#pragma mark - UIAlertView 代理方法
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    [alertView dismissWithClickedButtonIndex:buttonIndex animated:NO];
+    if (buttonIndex == 1) {
+        [self actionViewDidClickOkBtn:nil];
     }
 }
 
-/** 确定退出 */
-- (void)loginOut {
-    
-    [[WCUserInfo sharedWCUserInfo] setLogined:NO];
-    [[WCUserInfo sharedWCUserInfo] saveUserInfoToSandbox];
-    
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app xmppLogout];
-}
+//- (void)willPresentAlertView:(UIAlertView *)alertView {
+//    
+//    [[[alertView subviews] objectAtIndex:0] setBackgroundColor:[UIColor redColor]];
+//}
 
 @end

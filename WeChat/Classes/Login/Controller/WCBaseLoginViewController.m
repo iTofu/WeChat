@@ -22,10 +22,9 @@
     [LCProgressHUD showWaittingText:@"请稍候..."];
     
     
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    app.registerOperation = NO;
+    [WCXMPPTool sharedWCXMPPTool].registerOperation = NO;
     __weak typeof(self) selfVc = self;
-    [app xmppLogin:^(XMPPResultType type) {
+    [[WCXMPPTool sharedWCXMPPTool] xmppLogin:^(XMPPResultType type) {
         
         [selfVc handleResultType:type];
     }];
@@ -60,6 +59,10 @@
 
 /** 进入主界面 */
 - (void)enterMainPage {
+    
+    if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
     
     [[WCUserInfo sharedWCUserInfo] setLogined:YES];
     [[WCUserInfo sharedWCUserInfo] saveUserInfoToSandbox];

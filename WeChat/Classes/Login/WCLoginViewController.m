@@ -29,6 +29,8 @@
 
 - (void)dealloc {
     
+    WCLog(@"%s", __func__);
+    
     if (SCREEN_4) {
         
         [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -162,8 +164,6 @@
     WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
     userInfo.user = self.userLabel.text;
     userInfo.pwd = self.pwdField.text;
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    app.registerOperation = NO;
     
     [super login];
 }

@@ -73,11 +73,10 @@
     WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
     userInfo.registerUser = self.userField.text;
     userInfo.registerPwd = self.pwdField.text;
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    app.registerOperation = YES;
     
+    [WCXMPPTool sharedWCXMPPTool].registerOperation = YES;
     __weak typeof(self) selfVc = self;
-    [app xmppLogin:^(XMPPResultType type) {
+    [[WCXMPPTool sharedWCXMPPTool] xmppLogin:^(XMPPResultType type) {
         
         [selfVc handleResultType:type];
     }];

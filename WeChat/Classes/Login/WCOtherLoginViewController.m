@@ -78,7 +78,6 @@
     userInfo.user = self.userField.text;
     userInfo.pwd = self.pwdField.text;
     
-    
     [super login];
 }
 
