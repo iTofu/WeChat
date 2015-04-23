@@ -23,6 +23,7 @@
     
     
     AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.registerOperation = NO;
     __weak typeof(self) selfVc = self;
     [app xmppLogin:^(XMPPResultType type) {
         

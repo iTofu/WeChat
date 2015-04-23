@@ -10,6 +10,7 @@
 #import "WCOtherLoginViewController.h"
 #import "WCRegisterViewController.h"
 #import "WCNavigationController.h"
+#import "AppDelegate.h"
 
 @interface WCLoginViewController () <UITextFieldDelegate, UIActionSheetDelegate, WCRegisterViewControllerDelegate>
 
@@ -161,7 +162,8 @@
     WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
     userInfo.user = self.userLabel.text;
     userInfo.pwd = self.pwdField.text;
-    userInfo.registerOperation = NO;
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.registerOperation = NO;
     
     [super login];
 }

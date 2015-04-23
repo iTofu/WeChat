@@ -85,7 +85,7 @@
     }
     
     NSString *user = nil;
-    if ([WCUserInfo sharedWCUserInfo].isRegisterOperation) {    // 注册账号
+    if (self.isRegisterOperation) {    // 注册账号
         user = [WCUserInfo sharedWCUserInfo].registerUser;
     } else {                                                    // 登录账号
         user = [WCUserInfo sharedWCUserInfo].user;
@@ -145,7 +145,7 @@
     
     WCLog(@"连接服务器成功");
     
-    if ([WCUserInfo sharedWCUserInfo].isRegisterOperation) {    // 注册
+    if (self.isRegisterOperation) {    // 注册
         [self sendPwdToHostRegister];
     } else {
         [self sendPwdToHost];                                   // 登录

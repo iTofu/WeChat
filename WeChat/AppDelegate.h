@@ -28,6 +28,9 @@ typedef void (^XMPPResultBlock)(XMPPResultType type);
 
 @property (strong, nonatomic) UIWindow *window;
 
+/** 是否是注册 `YES`注册 `NO`登录 */
+@property (nonatomic, assign, getter=isRegisterOperation) BOOL registerOperation;
+
 /** 注册 */
 - (void)xmppRegister:(XMPPResultBlock)resultBlock;
 /** 登录 */
