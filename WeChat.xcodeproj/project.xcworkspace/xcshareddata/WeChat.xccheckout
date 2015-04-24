@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>95B9AFDF-7E39-4FB8-BD4D-110D57631CD6</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>WeChat</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BD3926188BFE15457460DA9E2EF5809B139BA229</key>
 		<string>https://github.com/LeoiOS/WeChat.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WeChat.xcodeproj/project.xcworkspace</string>
+	<string>WeChat.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>BD3926188BFE15457460DA9E2EF5809B139BA229</key>

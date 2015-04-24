@@ -65,11 +65,11 @@ singleton_implementation(WCXMPPTool)
         user = [WCUserInfo sharedWCUserInfo].user;
     }
     
-    XMPPJID *myJID = [XMPPJID jidWithUser:user domain:@"leo.local" resource:@"iPhone"];    // 用户JID
+    XMPPJID *myJID = [XMPPJID jidWithUser:user domain:@"115.28.243.22" resource:@"iPhone"];    // 用户JID
     _xmppStream.myJID = myJID;
     
-    _xmppStream.hostName = @"leo.local";    // 域名
-    _xmppStream.hostPort = 5222;            // 端口
+    _xmppStream.hostName = @"115.28.243.22";    // 域名
+    _xmppStream.hostPort = 5222;                // 端口
     
     NSError *error = nil;
     [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
