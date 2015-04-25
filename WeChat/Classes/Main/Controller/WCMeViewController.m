@@ -9,8 +9,12 @@
 #import "WCMeViewController.h"
 #import "AppDelegate.h"
 #import "WCActionView.h"
+#import "XMPPvCardTemp.h"
 
 @interface WCMeViewController () <UIAlertViewDelegate, WCActionViewDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 @end
 
@@ -23,6 +27,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.iconView.layer.cornerRadius = 4.0f;
+    self.iconView.clipsToBounds = YES;
+    
+    XMPPvCardTemp *myvCard = [WCXMPPTool sharedWCXMPPTool].vCard.myvCardTemp;
+    if (myvCard.photo) {
+        self.iconView.image = [UIImage imageWithData:myvCard.photo];
+    }
+    self.nicknameLabel.text = myvCard.nickname;
+    WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
+    self.userLabel.text = [NSString stringWithFormat:@"账号：%@", userInfo.user];
 }
 
 - (IBAction)loginOut:(id)sender {

@@ -26,6 +26,7 @@
     UINavigationBar *navBar = [UINavigationBar appearance];
     [navBar setBackgroundImage:[UIImage imageNamed:@"topbarbg_ios7"]
                                                   forBarMetrics:UIBarMetricsDefault];
+//    navBar.translucent = NO;
     
     // 导航栏标题
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];

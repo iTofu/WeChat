@@ -1,25 +1,25 @@
 //
-//  WCActionView.m
+//  WCPhotoPickerView.m
 //  WeChat
 //
-//  Created by 刘超 on 15/4/23.
+//  Created by 刘超 on 15/4/25.
 //  Copyright (c) 2015年 Leo. All rights reserved.
 //
 
-#import "WCActionView.h"
+#import "WCPhotoPickerView.h"
 
 #define BtnH 44.0f
 
-@interface WCActionView () {
+@interface WCPhotoPickerView () {
     UIView *_bgView;
     UIView *_bottomView;
 }
 
 @end
 
-@implementation WCActionView
+@implementation WCPhotoPickerView
 
-- (void)showWarningToView:(UIView *)view delegate:(id<WCActionViewDelegate>)delegate {
+- (void)showPickerViewToView:(UIView *)view delegate:(id<WCPhotoPickerViewDelegate>)delegate {
     
     _delegate = delegate;
     
@@ -44,30 +44,35 @@
     [self addSubview:bottomView];
     _bottomView = bottomView;
     
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"你确定要注销吗？";
-    label.font = [UIFont systemFontOfSize:13.0f];
-    label.textColor = WCDark;
-    label.backgroundColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    [bottomView addSubview:label];
-    label.frame = CGRectMake(0, 0, bottomW, BtnH);
+    // 拍照
+    UIButton *cameraBtn = [[UIButton alloc] init];
+    cameraBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    cameraBtn.backgroundColor = [UIColor whiteColor];
+    [cameraBtn setTitle:@"拍照" forState:UIControlStateNormal];
+    [cameraBtn setTitleColor:WCBlack forState:UIControlStateNormal];
+    [cameraBtn setTitleColor:WCColor(150, 150, 150) forState:UIControlStateHighlighted];
+    [cameraBtn addTarget:self action:@selector(didClickCameraBtn) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:cameraBtn];
+    cameraBtn.frame = CGRectMake(0, 0, bottomW, BtnH);
     
-    UIButton *okBtn = [[UIButton alloc] init];
-    okBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-    okBtn.backgroundColor = [UIColor whiteColor];
-    [okBtn setTitle:@"注销登录" forState:UIControlStateNormal];
-    [okBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [okBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    [okBtn addTarget:self action:@selector(didClickOkBtn) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview:okBtn];
-    okBtn.frame = CGRectMake(0, BtnH, bottomW, BtnH);
+    // 从手机相册选择
+    UIButton *photoLibraryBtn = [[UIButton alloc] init];
+    photoLibraryBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    photoLibraryBtn.backgroundColor = [UIColor whiteColor];
+    [photoLibraryBtn setTitle:@"从手机相册选择" forState:UIControlStateNormal];
+    [photoLibraryBtn setTitleColor:WCBlack forState:UIControlStateNormal];
+    [photoLibraryBtn setTitleColor:WCColor(150, 150, 150) forState:UIControlStateHighlighted];
+    [photoLibraryBtn addTarget:self action:@selector(didClickPhotoLibraryBtn) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:photoLibraryBtn];
+    photoLibraryBtn.frame = CGRectMake(0, BtnH, bottomW, BtnH);
     
+    // 取消
     UIButton *cancelBtn = [[UIButton alloc] init];
     cancelBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     cancelBtn.backgroundColor = [UIColor whiteColor];
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [cancelBtn setTitleColor:WCBlack forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:WCColor(150, 150, 150) forState:UIControlStateHighlighted];
     [cancelBtn addTarget:self action:@selector(didClickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:cancelBtn];
     cancelBtn.frame = CGRectMake(0, BtnH * 2 + 5.0f, bottomW, BtnH);
@@ -99,10 +104,19 @@
     [self didClickCancelBtn];
 }
 
-- (void)didClickOkBtn{
+- (void)didClickCameraBtn {
     
-    if ([self.delegate respondsToSelector:@selector(actionViewDidClickOkBtn:)]) {
-        [self.delegate actionViewDidClickOkBtn:self];
+    [self didClickCancelBtn];
+    if ([self.delegate respondsToSelector:@selector(photoPickerViewSourceTypeCamera:)]) {
+        [self.delegate photoPickerViewSourceTypeCamera:self];
+    }
+}
+
+- (void)didClickPhotoLibraryBtn{
+    
+    [self didClickCancelBtn];
+    if ([self.delegate respondsToSelector:@selector(photoPickerViewSourceTypePhotoLibrary:)]) {
+        [self.delegate photoPickerViewSourceTypePhotoLibrary:self];
     }
 }
 
@@ -123,8 +137,8 @@
                      } completion:^(BOOL finished) {
                          
                          [self removeFromSuperview];
-                         if ([self.delegate respondsToSelector:@selector(actionViewDidClickCancelBtn:)]) {
-                             [self.delegate actionViewDidClickCancelBtn:self];
+                         if ([self.delegate respondsToSelector:@selector(photoPickerViewDidClickCancelBtn:)]) {
+                             [self.delegate photoPickerViewDidClickCancelBtn:self];
                          }
                      }];
 }

@@ -29,12 +29,12 @@
 
 - (void)dealloc {
     
-    WCLog(@"%s", __func__);
-    
     if (SCREEN_4) {
         
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
+    
+    WCLog(@"%s", __func__);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

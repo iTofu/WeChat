@@ -29,6 +29,13 @@
 // 是4.7寸以下屏幕
 #define SCREEN_4_7 self.view.frame.size.height < 700.0f
 
+// 是否模拟器
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR YES
+#elif TARGET_OS_IPHONE
+#define SIMULATOR NO
+#endif
+
 // 屏幕尺寸
 #define WINSIZE [UIScreen mainScreen].bounds.size
 

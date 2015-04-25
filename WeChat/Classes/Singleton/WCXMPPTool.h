@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
+#import "XMPPFramework.h"
 
 typedef enum {
     /** 登录成功 */
@@ -29,6 +30,8 @@ typedef void (^XMPPResultBlock)(XMPPResultType type);
 @interface WCXMPPTool : NSObject
 
 singleton_interface(WCXMPPTool)
+
+@property (nonatomic, strong) XMPPvCardTempModule *vCard;
 
 /** 是否是注册 `YES`注册 `NO`登录 */
 @property (nonatomic, assign, getter=isRegisterOperation) BOOL registerOperation;

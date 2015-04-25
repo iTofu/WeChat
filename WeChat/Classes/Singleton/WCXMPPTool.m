@@ -7,7 +7,6 @@
 //
 
 #import "WCXMPPTool.h"
-#import "XMPPFramework.h"
 
 /*
  *  在AppDelegate实现登录
@@ -21,6 +20,8 @@
 @interface WCXMPPTool () <XMPPStreamDelegate> {
     XMPPStream *_xmppStream;
     XMPPResultBlock _resultBlock;
+    XMPPvCardCoreDataStorage *_vCardStorage;
+    XMPPvCardAvatarModule *_vCardAvatar;
 }
 
 /** 初始化XMPPStream */
@@ -44,6 +45,16 @@ singleton_implementation(WCXMPPTool)
 - (void)setupXMPPStream {
     
     _xmppStream = [[XMPPStream alloc] init];
+    
+    
+    // 设置名片和头像
+    _vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+    _vCard = [[XMPPvCardTempModule alloc] initWithvCardStorage:_vCardStorage];
+    [_vCard activate:_xmppStream];
+    
+    _vCardAvatar = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:_vCard];
+    [_vCardAvatar activate:_xmppStream];
+    
     
     [_xmppStream addDelegate:self
                delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
@@ -109,8 +120,10 @@ singleton_implementation(WCXMPPTool)
     
     WCLog(@"发送`在线`消息");
     
-    XMPPPresence *online = [XMPPPresence presence];
-    [_xmppStream sendElement:online];
+    XMPPPresence *presence = [XMPPPresence presence];
+    [_xmppStream sendElement:presence];
+    
+    WCLog(@"%@", presence);
 }
 
 #pragma mark - XMPPStreamDelegate 方法

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B32C9BCD1AEB55FF00FB6A62 /* WCPhotoPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32C9BCC1AEB55FF00FB6A62 /* WCPhotoPickerView.m */; };
+		B32E57521AEA45510062E6E7 /* WCActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32E57511AEA45510062E6E7 /* WCActionView.m */; };
+		B32E57551AEA4B7A0062E6E7 /* WCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32E57541AEA4B7A0062E6E7 /* WCProfileViewController.m */; };
 		B330C6C51AE29A8800C3BB20 /* hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = B330C6BB1AE29A8800C3BB20 /* hud_error.png */; };
 		B330C6C61AE29A8800C3BB20 /* hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B330C6BC1AE29A8800C3BB20 /* hud_error@2x.png */; };
 		B330C6C71AE29A8800C3BB20 /* hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B330C6BD1AE29A8800C3BB20 /* hud_error@3x.png */; };
@@ -152,7 +155,6 @@
 		B34DAEBB1AE0F05600FE8D21 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B34DAE391AE0F05600FE8D21 /* libidn.a */; };
 		B34DAEBD1AE0F08200FE8D21 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B34DAEBC1AE0F08200FE8D21 /* libxml2.dylib */; };
 		B34DAEC01AE0F0AF00FE8D21 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B34DAEBF1AE0F0AF00FE8D21 /* libresolv.dylib */; };
-		B3636B181AE8B36E008CE662 /* WCActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3636B171AE8B36E008CE662 /* WCActionView.m */; };
 		B37C20201AE6381A005731DA /* WCRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B37C201F1AE6381A005731DA /* WCRegisterViewController.m */; };
 		B39D40D91AE4E09900EE48F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39D40D81AE4E09900EE48F6 /* Main.storyboard */; };
 		B39D40DE1AE4E1DE00EE48F6 /* WCUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B39D40DD1AE4E1DE00EE48F6 /* WCUserInfo.m */; };
@@ -180,6 +182,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B32C9BCB1AEB55FF00FB6A62 /* WCPhotoPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCPhotoPickerView.h; sourceTree = "<group>"; };
+		B32C9BCC1AEB55FF00FB6A62 /* WCPhotoPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCPhotoPickerView.m; sourceTree = "<group>"; };
+		B32E57501AEA45510062E6E7 /* WCActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCActionView.h; sourceTree = "<group>"; };
+		B32E57511AEA45510062E6E7 /* WCActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCActionView.m; sourceTree = "<group>"; };
+		B32E57531AEA4B7A0062E6E7 /* WCProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCProfileViewController.h; sourceTree = "<group>"; };
+		B32E57541AEA4B7A0062E6E7 /* WCProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCProfileViewController.m; sourceTree = "<group>"; };
 		B330C6BB1AE29A8800C3BB20 /* hud_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_error.png; sourceTree = "<group>"; };
 		B330C6BC1AE29A8800C3BB20 /* hud_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_error@2x.png"; sourceTree = "<group>"; };
 		B330C6BD1AE29A8800C3BB20 /* hud_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud_error@3x.png"; sourceTree = "<group>"; };
@@ -473,8 +481,6 @@
 		B34DAEBC1AE0F08200FE8D21 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B34DAEBF1AE0F0AF00FE8D21 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		B34DAEC11AE0F16100FE8D21 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		B3636B161AE8B36E008CE662 /* WCActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCActionView.h; path = ../../Common/View/WCActionView.h; sourceTree = "<group>"; };
-		B3636B171AE8B36E008CE662 /* WCActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCActionView.m; path = ../../Common/View/WCActionView.m; sourceTree = "<group>"; };
 		B37C201E1AE6381A005731DA /* WCRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRegisterViewController.h; sourceTree = "<group>"; };
 		B37C201F1AE6381A005731DA /* WCRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRegisterViewController.m; sourceTree = "<group>"; };
 		B39D40D81AE4E09900EE48F6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -554,7 +560,6 @@
 		B330C6CD1AE2A6A400C3BB20 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B3D31B0A1AE8B1D700485A62 /* View */,
 				B3D31B091AE8B1C200485A62 /* Controller */,
 			);
 			path = Common;
@@ -1436,8 +1441,10 @@
 		B3636B191AE8D9B2008CE662 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B3636B161AE8B36E008CE662 /* WCActionView.h */,
-				B3636B171AE8B36E008CE662 /* WCActionView.m */,
+				B32E57501AEA45510062E6E7 /* WCActionView.h */,
+				B32E57511AEA45510062E6E7 /* WCActionView.m */,
+				B32C9BCB1AEB55FF00FB6A62 /* WCPhotoPickerView.h */,
+				B32C9BCC1AEB55FF00FB6A62 /* WCPhotoPickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1522,6 +1529,8 @@
 			children = (
 				B33DB9561AE494DB0013EBF2 /* WCMeViewController.h */,
 				B33DB9571AE494DB0013EBF2 /* WCMeViewController.m */,
+				B32E57531AEA4B7A0062E6E7 /* WCProfileViewController.h */,
+				B32E57541AEA4B7A0062E6E7 /* WCProfileViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1533,13 +1542,6 @@
 				B330C6CF1AE2A6E700C3BB20 /* WCNavigationController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B3D31B0A1AE8B1D700485A62 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1743,6 +1745,7 @@
 				B34DAE5C1AE0F05600FE8D21 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				B34DAEA31AE0F05600FE8D21 /* NSXMLElement+XEP_0297.m in Sources */,
 				B37C20201AE6381A005731DA /* WCRegisterViewController.m in Sources */,
+				B32E57551AEA4B7A0062E6E7 /* WCProfileViewController.m in Sources */,
 				B34DAE921AE0F05600FE8D21 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				B39D40DE1AE4E1DE00EE48F6 /* WCUserInfo.m in Sources */,
 				B34DAE661AE0F05600FE8D21 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
@@ -1776,7 +1779,7 @@
 				B34DAE5D1AE0F05600FE8D21 /* XMPPIQ+JabberRPC.m in Sources */,
 				B34DAE591AE0F05600FE8D21 /* XMPPRosterMemoryStorage.m in Sources */,
 				B34DAE701AE0F05600FE8D21 /* XMPPRoom.m in Sources */,
-				B3636B181AE8B36E008CE662 /* WCActionView.m in Sources */,
+				B32E57521AEA45510062E6E7 /* WCActionView.m in Sources */,
 				B34DAEA81AE0F05600FE8D21 /* GCDMulticastDelegate.m in Sources */,
 				B34DAE911AE0F05600FE8D21 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				B34DAE571AE0F05600FE8D21 /* XMPPUserCoreDataStorageObject.m in Sources */,
@@ -1784,6 +1787,7 @@
 				B34DAE651AE0F05600FE8D21 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				B34DAE871AE0F05600FE8D21 /* XMPPMessage+XEP_0085.m in Sources */,
 				B34DAEAD1AE0F05600FE8D21 /* GCDAsyncSocket.m in Sources */,
+				B32C9BCD1AEB55FF00FB6A62 /* WCPhotoPickerView.m in Sources */,
 				B34DAE741AE0F05600FE8D21 /* XMPPvCardCoreDataStorageObject.m in Sources */,
 				B34DAEB61AE0F05600FE8D21 /* NSString+DDXML.m in Sources */,
 				B34DAEAC1AE0F05600FE8D21 /* XMPPStringPrep.m in Sources */,

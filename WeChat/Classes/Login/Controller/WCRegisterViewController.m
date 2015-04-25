@@ -67,8 +67,17 @@
     
     [self.view endEditing:YES];
     
-    [LCProgressHUD showWaittingText:@"请稍候..."];
+    if (self.userField.text.length <= 3) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入三位以上账号。"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     
+    [LCProgressHUD showWaittingText:@"请稍候..."];
     
     WCUserInfo *userInfo = [WCUserInfo sharedWCUserInfo];
     userInfo.registerUser = self.userField.text;

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "WCNavigationController.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +29,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // XMPP的log
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     [WCNavigationController setupNavTheme];
     

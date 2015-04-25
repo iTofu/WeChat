@@ -60,9 +60,9 @@
 /** 进入主界面 */
 - (void)enterMainPage {
     
-    if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
-        [self dismissViewControllerAnimated:NO completion:nil];
-    }
+//    if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
+//        [self dismissViewControllerAnimated:NO completion:nil];
+//    }
     
     [[WCUserInfo sharedWCUserInfo] setLogined:YES];
     [[WCUserInfo sharedWCUserInfo] saveUserInfoToSandbox];
