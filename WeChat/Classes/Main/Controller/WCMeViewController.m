@@ -107,9 +107,4 @@
     }
 }
 
-//- (void)willPresentAlertView:(UIAlertView *)alertView {
-//    
-//    [[[alertView subviews] objectAtIndex:0] setBackgroundColor:[UIColor redColor]];
-//}
-
 @end

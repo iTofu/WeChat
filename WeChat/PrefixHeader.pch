@@ -17,6 +17,8 @@
 #import "LCProgressHUD.h"
 #import "WCUserInfo.h"
 #import "WCXMPPTool.h"
+#import "WCTableViewController.h"
+#import "WCTableViewCell.h"
 
 // 是iOS8以上
 #define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0f)

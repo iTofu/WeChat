@@ -9,6 +9,7 @@
 #import "WCProfileViewController.h"
 #import "XMPPvCardTemp.h"
 #import "WCPhotoPickerView.h"
+#import "WCEditProfileViewController.h"
 
 @interface WCProfileViewController () <UIAlertViewDelegate, WCPhotoPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -62,6 +63,16 @@
     self.emailLabel.text = myvCard.mailer;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    id desVc = segue.destinationViewController;
+    if ([desVc isKindOfClass:[WCEditProfileViewController class]]) {
+        
+        WCEditProfileViewController *editVc = desVc;
+        editVc.cell = sender;
+    }
+}
+
 #pragma mark - UITableView 代理方法
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,7 +99,7 @@
         
     } else if (cell.tag == 1) { // 修改
         
-        
+        [self performSegueWithIdentifier:@"EditProfileSegue" sender:cell];
     }
 }
 
@@ -119,6 +130,11 @@
     UIImage *image = info[UIImagePickerControllerEditedImage];
     self.iconView.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    XMPPvCardTemp *myvCard = [WCXMPPTool sharedWCXMPPTool].vCard.myvCardTemp;
+    myvCard.photo = UIImagePNGRepresentation(image);
+    
+    [[WCXMPPTool sharedWCXMPPTool].vCard updateMyvCardTemp:myvCard];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {

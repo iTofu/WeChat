@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WCProfileViewController : UITableViewController
+@interface WCProfileViewController : WCTableViewController
 
 @end
