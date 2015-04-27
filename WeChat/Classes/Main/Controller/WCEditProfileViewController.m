@@ -20,20 +20,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 标题 内容
+    self.title = self.cell.textLabel.text;
+    self.textField.text = self.cell.detailTextLabel.text;
+    
     // 保存按钮
     UIBarButtonItem *savevCardBtn = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(savevCard)];
     savevCardBtn.tintColor = WCGreen;
     self.navigationItem.rightBarButtonItem = savevCardBtn;
-    
-    // 标题 内容
-    self.title = self.cell.textLabel.text;
-    self.textField.text = self.cell.detailTextLabel.text;
 }
 
 - (void)savevCard {
     
     self.cell.detailTextLabel.text = self.textField.text;
-    [self.cell layoutSubviews];
+    
+    if ([self.delegate respondsToSelector:@selector(editProfileViewControllerDidSaved:)]) {
+        [self.delegate editProfileViewControllerDidSaved:self];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

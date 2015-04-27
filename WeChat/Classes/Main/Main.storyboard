@@ -563,6 +563,30 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="HLk-zt-xFw">
+                                <cells>
+                                    <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="xSL-8k-bG7" detailTextLabel="Mqa-WM-UF4" style="IBUITableViewCellStyleValue1" id="dmM-JL-Ic3" customClass="WCTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dmM-JL-Ic3" id="KJm-mx-znu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="性别" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xSL-8k-bG7">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mqa-WM-UF4">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="8Jw-1y-89J">
                                 <cells>
                                     <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ygr-F2-loz" detailTextLabel="pmY-W9-uVO" style="IBUITableViewCellStyleValue1" id="qzk-xI-fum" customClass="WCTableViewCell">
@@ -680,19 +704,21 @@
                         <outlet property="orgnameLabel" destination="pmY-W9-uVO" id="ZWg-7H-jKc"/>
                         <outlet property="orgunitLabel" destination="SpD-OY-BP4" id="MVL-xo-VVM"/>
                         <outlet property="phoneLabel" destination="7CY-dc-inr" id="4LW-Ev-YY0"/>
+                        <outlet property="sexLabel" destination="Mqa-WM-UF4" id="q05-C7-utC"/>
                         <outlet property="titleLabel" destination="N9A-qw-lBk" id="nEe-zu-ZDY"/>
                         <outlet property="userLabel" destination="ykF-kz-3Xp" id="yTl-bd-lyn"/>
                         <segue destination="Zy0-9o-UdT" kind="show" identifier="EditProfileSegue" id="f3V-qP-y1k"/>
+                        <segue destination="RX8-CD-1e1" kind="show" identifier="ChangeSexSegue" id="7fh-rT-5Va"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XY3-eU-lLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2269" y="32"/>
         </scene>
-        <!--Edit Profile View Controller-->
+        <!--修改个人信息-->
         <scene sceneID="7P9-3l-BJc">
             <objects>
-                <tableViewController id="Zy0-9o-UdT" customClass="WCEditProfileViewController" sceneMemberID="viewController">
+                <tableViewController id="Zy0-9o-UdT" userLabel="修改个人信息" customClass="WCEditProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="03e-Et-zOd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -738,6 +764,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdm-HB-Uy1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3001" y="32"/>
+        </scene>
+        <!--修改性别-->
+        <scene sceneID="xSn-oL-1OC">
+            <objects>
+                <tableViewController id="RX8-CD-1e1" userLabel="修改性别" customClass="WCChangeSexViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="NtZ-KQ-CVW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="ji3-9A-n4j">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="e2D-UE-od8" style="IBUITableViewCellStyleDefault" id="Vaz-rT-NFm" customClass="WCTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vaz-rT-NFm" id="7cT-3e-vJV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="男" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e2D-UE-od8">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="mjo-kL-PoQ" style="IBUITableViewCellStyleDefault" id="m0o-CE-NLw" customClass="WCTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0o-CE-NLw" id="bxM-bo-SwC">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="女" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mjo-kL-PoQ">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="RX8-CD-1e1" id="tCm-f9-GAn"/>
+                            <outlet property="delegate" destination="RX8-CD-1e1" id="2WV-52-6FY"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="femaleCell" destination="m0o-CE-NLw" id="mdN-MW-ONO"/>
+                        <outlet property="maleCell" destination="Vaz-rT-NFm" id="SSH-lw-YNa"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbu-rc-CO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3001" y="778"/>
         </scene>
         <!--我-->
         <scene sceneID="GIX-rV-Lzi">

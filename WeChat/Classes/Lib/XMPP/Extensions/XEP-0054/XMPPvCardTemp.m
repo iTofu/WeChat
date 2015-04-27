@@ -99,6 +99,16 @@ NSString *const kXMPPvCardTempElement = @"vCard";
 #pragma mark Identification Types
 
 
+- (NSString *)sex {
+    return [[self elementForName:@"SEX"] stringValue];
+}
+
+
+- (void)setSex:(NSString *)sex {
+    XMPP_VCARD_SET_STRING_CHILD(sex, @"SEX");
+}
+
+
 - (NSDate *)bday {
 	NSDate *bday = nil;
 	NSXMLElement *elem = [self elementForName:@"BDAY"];

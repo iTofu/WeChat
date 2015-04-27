@@ -18,4 +18,15 @@
     return [image stretchableImageWithLeftCapWidth:leftCap topCapHeight:topCap];
 }
 
++ (UIImage *)compressImage:(UIImage *)imgSrc {
+    
+    CGSize size = {320, 320};
+    UIGraphicsBeginImageContext(size);
+    CGRect rect = {{0,0}, size};
+    [imgSrc drawInRect:rect];
+    UIImage *compressedImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return compressedImg;
+}
+
 @end

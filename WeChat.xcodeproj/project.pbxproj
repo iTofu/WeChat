@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B317C36E1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B317C36D1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m */; };
 		B31C175B1AEBEAE40045E18A /* WCEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C175A1AEBEAE40045E18A /* WCEditProfileViewController.m */; };
 		B32E57551AEA4B7A0062E6E7 /* WCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32E57541AEA4B7A0062E6E7 /* WCProfileViewController.m */; };
 		B330C6C51AE29A8800C3BB20 /* hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = B330C6BB1AE29A8800C3BB20 /* hud_error.png */; };
@@ -187,6 +188,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B317C36C1AEE2B6A00DAF2F4 /* WCChangeSexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCChangeSexViewController.h; sourceTree = "<group>"; };
+		B317C36D1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCChangeSexViewController.m; sourceTree = "<group>"; };
 		B31C17591AEBEAE40045E18A /* WCEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCEditProfileViewController.h; sourceTree = "<group>"; };
 		B31C175A1AEBEAE40045E18A /* WCEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCEditProfileViewController.m; sourceTree = "<group>"; };
 		B32E57531AEA4B7A0062E6E7 /* WCProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCProfileViewController.h; sourceTree = "<group>"; };
@@ -1544,6 +1547,8 @@
 				B32E57541AEA4B7A0062E6E7 /* WCProfileViewController.m */,
 				B31C17591AEBEAE40045E18A /* WCEditProfileViewController.h */,
 				B31C175A1AEBEAE40045E18A /* WCEditProfileViewController.m */,
+				B317C36C1AEE2B6A00DAF2F4 /* WCChangeSexViewController.h */,
+				B317C36D1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m */,
 				B3FA7BFD1AEDDF3100061F68 /* WCDiscoverViewController.h */,
 				B3FA7BFE1AEDDF3100061F68 /* WCDiscoverViewController.m */,
 			);
@@ -1732,6 +1737,7 @@
 				B34DAE771AE0F05600FE8D21 /* XMPPvCardTempAdr.m in Sources */,
 				B34DACCC1AE0F02200FE8D21 /* AppDelegate.m in Sources */,
 				B31C175B1AEBEAE40045E18A /* WCEditProfileViewController.m in Sources */,
+				B317C36E1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m in Sources */,
 				B34DAE611AE0F05600FE8D21 /* XMPPLastActivity.m in Sources */,
 				B34DAE8E1AE0F05600FE8D21 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				B34DAE581AE0F05600FE8D21 /* XMPPResourceMemoryStorageObject.m in Sources */,

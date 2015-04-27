@@ -41,6 +41,8 @@ extern NSString *const kXMPPvCardTempElement;
  */
 @interface XMPPvCardTemp : XMPPvCardTempBase
 
+/** 性别 */
+@property (nonatomic, strong) NSString *sex;
 
 @property (nonatomic, strong) NSDate *bday;
 @property (nonatomic, strong) NSData *photo;
