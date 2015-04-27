@@ -31,7 +31,7 @@
     // Override point for customization after application launch.
     
     // XMPP的log
-//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     [WCNavigationController setupNavTheme];
     

@@ -8,10 +8,10 @@
 
 #import "WCMeViewController.h"
 #import "AppDelegate.h"
-#import "WCActionView.h"
+#import "LCActionSheet.h"
 #import "XMPPvCardTemp.h"
 
-@interface WCMeViewController () <UIAlertViewDelegate, WCActionViewDelegate>
+@interface WCMeViewController () <UIAlertViewDelegate, LCActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
@@ -54,7 +54,7 @@
                                                                 handler:^(UIAlertAction *action) {
                                                                     [alert dismissViewControllerAnimated:NO
                                                                                               completion:nil];
-                                                                    [self actionViewDidClickOkBtn:nil];
+                                                                    [self actionSheet:nil didClickedButtonAtIndex:0];
                                                                 }];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                                    style:UIAlertActionStyleDefault
@@ -79,22 +79,26 @@
 
     } else {
         
-        WCActionView *actionView = [[WCActionView alloc] init];
-        actionView.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height);
-        [self.view.window addSubview:actionView];
-        [actionView showWarningToView:self.view delegate:self];
+        LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"你确定要注销吗？"
+                                                       buttonTitles:@[@"确定"]
+                                                     redButtonIndex:0
+                                                           delegate:self];
+        [sheet show];
     }
 }
 
 #pragma mark - WCActionView 代理方法
 
-- (void)actionViewDidClickOkBtn:(WCActionView *)actionView {
+- (void)actionSheet:(LCActionSheet *)actionSheet didClickedButtonAtIndex:(int)buttonIndex {
     
-    [[WCXMPPTool sharedWCXMPPTool] xmppLogout];
-    
-    // 回到LoginViewController
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+    if (buttonIndex == 0) {
+        
+        [[WCXMPPTool sharedWCXMPPTool] xmppLogout];
+        
+        // 回到LoginViewController
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+    }
 }
 
 #pragma mark - UIAlertView 代理方法
@@ -103,7 +107,7 @@
     
     [alertView dismissWithClickedButtonIndex:buttonIndex animated:NO];
     if (buttonIndex == 1) {
-        [self actionViewDidClickOkBtn:nil];
+        [self actionSheet:nil didClickedButtonAtIndex:0];
     }
 }
 

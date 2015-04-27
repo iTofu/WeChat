@@ -21,16 +21,9 @@
     [super viewDidLoad];
     
     // 保存按钮
-    UIButton *saveBtn = [[UIButton alloc] init];
-    [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
-    [saveBtn setTitleColor:WCGreen forState:UIControlStateNormal];
-    [saveBtn setTitleColor:WCColor(60, 210, 30) forState:UIControlStateHighlighted];
-    saveBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-    saveBtn.frame = CGRectMake(0, 0, 60.0f, 44.0f);
-    saveBtn.titleLabel.textAlignment = NSTextAlignmentRight;
-    saveBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 24.0f, 0, 0);
-    [saveBtn addTarget:self action:@selector(savevCard) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
+    UIBarButtonItem *savevCardBtn = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(savevCard)];
+    savevCardBtn.tintColor = WCGreen;
+    self.navigationItem.rightBarButtonItem = savevCardBtn;
     
     // 标题 内容
     self.title = self.cell.textLabel.text;

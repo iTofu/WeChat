@@ -8,10 +8,10 @@
 
 #import "WCProfileViewController.h"
 #import "XMPPvCardTemp.h"
-#import "WCPhotoPickerView.h"
+#import "LCActionSheet.h"
 #import "WCEditProfileViewController.h"
 
-@interface WCProfileViewController () <UIAlertViewDelegate, WCPhotoPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface WCProfileViewController () <UIAlertViewDelegate, LCActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
@@ -91,10 +91,11 @@
             
         } else {
             
-            WCPhotoPickerView *picker = [[WCPhotoPickerView alloc] init];
-            picker.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height);
-            [self.view.window addSubview:picker];
-            [picker showPickerViewToView:self.view delegate:self];
+            LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:nil
+                                                           buttonTitles:@[@"拍照", @"从手机相册选择"]
+                                                         redButtonIndex:-1
+                                                               delegate:self];
+            [sheet show];
         }
         
     } else if (cell.tag == 1) { // 修改
@@ -105,22 +106,24 @@
 
 #pragma mark - WCPhotoPickerView 代理方法
 
-- (void)photoPickerViewSourceTypeCamera:(WCPhotoPickerView *)pickerView {
+- (void)actionSheet:(LCActionSheet *)actionSheet didClickedButtonAtIndex:(int)buttonIndex {
     
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:picker animated:YES completion:nil];
-}
-
-- (void)photoPickerViewSourceTypePhotoLibrary:(WCPhotoPickerView *)pickerView {
-    
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:picker animated:YES completion:nil];
+    if (buttonIndex == 0) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    } else if (buttonIndex == 1) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UIImagePickerController & UINavigationController 代理方法
@@ -159,12 +162,12 @@
             
         } else {
             
-            [self photoPickerViewSourceTypeCamera:nil];
+            [self actionSheet:nil didClickedButtonAtIndex:0];
         }
         
     } else if (buttonIndex == 2) {  // 相册
         
-        [self photoPickerViewSourceTypePhotoLibrary:nil];
+        [self actionSheet:nil didClickedButtonAtIndex:1];
     }
 }
 
