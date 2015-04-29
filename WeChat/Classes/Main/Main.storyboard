@@ -73,17 +73,59 @@
         <!--通讯录-->
         <scene sceneID="NXY-cm-bXK">
             <objects>
-                <tableViewController id="YcO-2l-qez" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7W5-SY-A7N">
+                <tableViewController id="YcO-2l-qez" customClass="WCContactsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="7W5-SY-A7N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0DK-sW-df6">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" rowHeight="60" id="0DK-sW-df6" customClass="WCContactCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0DK-sW-df6" id="32e-UN-hPU">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hui" translatesAutoresizingMaskIntoConstraints="NO" id="xoA-dh-e6R">
+                                            <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="bCj-PF-kGT"/>
+                                                <constraint firstAttribute="width" constant="40" id="sKZ-hw-vje"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[离线]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71s-um-O2F">
+                                            <rect key="frame" x="550" y="19" width="40" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="rrj-j8-qH8"/>
+                                                <constraint firstAttribute="width" constant="40" id="wwc-u8-L7K"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天王盖地虎" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRh-pm-Ery">
+                                            <rect key="frame" x="60" y="19" width="482" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="E3A-9d-jNe"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="71s-um-O2F" secondAttribute="centerY" id="2u4-6E-bx3"/>
+                                        <constraint firstAttribute="centerY" secondItem="xoA-dh-e6R" secondAttribute="centerY" id="7D0-Dz-kIT"/>
+                                        <constraint firstItem="71s-um-O2F" firstAttribute="leading" secondItem="wRh-pm-Ery" secondAttribute="trailing" constant="8" id="BQc-Ka-WzS"/>
+                                        <constraint firstItem="xoA-dh-e6R" firstAttribute="leading" secondItem="32e-UN-hPU" secondAttribute="leading" constant="10" id="V4D-Dx-o6Q"/>
+                                        <constraint firstAttribute="centerY" secondItem="wRh-pm-Ery" secondAttribute="centerY" id="Ym6-Kg-TVy"/>
+                                        <constraint firstAttribute="trailing" secondItem="71s-um-O2F" secondAttribute="trailing" constant="10" id="iar-Rd-AeT"/>
+                                        <constraint firstItem="wRh-pm-Ery" firstAttribute="leading" secondItem="xoA-dh-e6R" secondAttribute="trailing" constant="10" id="n0i-Tv-UzY"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="iconView" destination="xoA-dh-e6R" id="Nv0-ZK-pSS"/>
+                                    <outlet property="nicknameLabel" destination="wRh-pm-Ery" id="zIr-yX-GNC"/>
+                                    <outlet property="statusLabel" destination="71s-um-O2F" id="C5c-1d-HUR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -91,11 +133,66 @@
                             <outlet property="delegate" destination="YcO-2l-qez" id="xnS-FR-v5P"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="通讯录" id="eDf-ie-J5b"/>
+                    <navigationItem key="navigationItem" title="通讯录" id="eDf-ie-J5b">
+                        <barButtonItem key="rightBarButtonItem" image="contacts_add_friend" id="VA0-pG-n0m">
+                            <connections>
+                                <segue destination="Jtp-9r-4Vp" kind="show" id="wf1-Nh-EbU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryA-Oe-Hyy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1520" y="-1392"/>
+        </scene>
+        <!--添加朋友-->
+        <scene sceneID="VSm-4A-1MY">
+            <objects>
+                <tableViewController id="Jtp-9r-4Vp" userLabel="添加朋友" customClass="WCAddContactViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="u6a-jY-DAq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="kkd-vc-ye4">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3PJ-gL-fbv">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3PJ-gL-fbv" id="9be-zS-fRH">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入朋友的账号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MYF-lC-RNP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Jtp-9r-4Vp" id="YMj-ey-Pz8"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MYF-lC-RNP" firstAttribute="leading" secondItem="9be-zS-fRH" secondAttribute="leading" id="5q0-6X-S5M"/>
+                                                <constraint firstAttribute="trailing" secondItem="MYF-lC-RNP" secondAttribute="trailing" id="FED-qM-y2c"/>
+                                                <constraint firstAttribute="bottom" secondItem="MYF-lC-RNP" secondAttribute="bottom" id="Gal-N2-7wT"/>
+                                                <constraint firstItem="MYF-lC-RNP" firstAttribute="top" secondItem="9be-zS-fRH" secondAttribute="top" id="jhx-d4-JlN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Jtp-9r-4Vp" id="41c-iH-bXa"/>
+                            <outlet property="delegate" destination="Jtp-9r-4Vp" id="Evv-UI-SX9"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="textField" destination="MYF-lC-RNP" id="0VG-IS-kjp"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vmc-OO-Qct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2269" y="-1392"/>
         </scene>
         <!--通讯录-->
         <scene sceneID="xX2-Pd-FON">
@@ -848,11 +945,13 @@
         <image name="MoreMyFavorites" width="25" height="25"/>
         <image name="MoreSetting" width="25" height="25"/>
         <image name="MyCardPackageIcon" width="25" height="25"/>
+        <image name="contacts_add_friend" width="28" height="30"/>
         <image name="ff_IconBottle" width="25" height="25"/>
         <image name="ff_IconLocationService" width="25" height="25"/>
         <image name="ff_IconQRCode" width="25" height="25"/>
         <image name="ff_IconShake" width="25" height="25"/>
         <image name="ff_IconShowAlbum" width="25" height="25"/>
+        <image name="hui" width="100" height="100"/>
         <image name="tabbar_contacts" width="27" height="23"/>
         <image name="tabbar_discover" width="23" height="23"/>
         <image name="tabbar_mainframe" width="25" height="23"/>

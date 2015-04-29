@@ -20,7 +20,6 @@
 		B330C6CC1AE29A8800C3BB20 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B330C6C41AE29A8800C3BB20 /* MBProgressHUD.m */; };
 		B33DB9581AE494DB0013EBF2 /* WCMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33DB9571AE494DB0013EBF2 /* WCMeViewController.m */; };
 		B34DACC91AE0F02200FE8D21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B34DACC81AE0F02200FE8D21 /* main.m */; };
-		B34DACCC1AE0F02200FE8D21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B34DACCB1AE0F02200FE8D21 /* AppDelegate.m */; };
 		B34DACD41AE0F02200FE8D21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34DACD31AE0F02200FE8D21 /* Images.xcassets */; };
 		B34DACD71AE0F02200FE8D21 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34DACD51AE0F02200FE8D21 /* LaunchScreen.xib */; };
 		B34DACE31AE0F02200FE8D21 /* WeChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B34DACE21AE0F02200FE8D21 /* WeChatTests.m */; };
@@ -154,6 +153,10 @@
 		B34DAEBB1AE0F05600FE8D21 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B34DAE391AE0F05600FE8D21 /* libidn.a */; };
 		B34DAEBD1AE0F08200FE8D21 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B34DAEBC1AE0F08200FE8D21 /* libxml2.dylib */; };
 		B34DAEC01AE0F0AF00FE8D21 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B34DAEBF1AE0F0AF00FE8D21 /* libresolv.dylib */; };
+		B35B83F41AF0BFB900685B7A /* WCContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35B83F31AF0BFB900685B7A /* WCContactsViewController.m */; };
+		B35B83F71AF0C73B00685B7A /* WCContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35B83F61AF0C73B00685B7A /* WCContactCell.m */; };
+		B35B83FF1AF0CC4B00685B7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B35B83FE1AF0CC4B00685B7A /* AppDelegate.m */; };
+		B35B84021AF0DE5500685B7A /* WCAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35B84011AF0DE5500685B7A /* WCAddContactViewController.m */; };
 		B37C20201AE6381A005731DA /* WCRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B37C201F1AE6381A005731DA /* WCRegisterViewController.m */; };
 		B39D40D91AE4E09900EE48F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39D40D81AE4E09900EE48F6 /* Main.storyboard */; };
 		B39D40DE1AE4E1DE00EE48F6 /* WCUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B39D40DD1AE4E1DE00EE48F6 /* WCUserInfo.m */; };
@@ -210,8 +213,6 @@
 		B34DACC31AE0F02200FE8D21 /* WeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34DACC71AE0F02200FE8D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B34DACC81AE0F02200FE8D21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B34DACCA1AE0F02200FE8D21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
-		B34DACCB1AE0F02200FE8D21 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../AppDelegate.m; sourceTree = "<group>"; };
 		B34DACD31AE0F02200FE8D21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B34DACD61AE0F02200FE8D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B34DACDC1AE0F02200FE8D21 /* WeChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -485,6 +486,14 @@
 		B34DAEBC1AE0F08200FE8D21 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B34DAEBF1AE0F0AF00FE8D21 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		B34DAEC11AE0F16100FE8D21 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B35B83F21AF0BFB900685B7A /* WCContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCContactsViewController.h; sourceTree = "<group>"; };
+		B35B83F31AF0BFB900685B7A /* WCContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCContactsViewController.m; sourceTree = "<group>"; };
+		B35B83F51AF0C73B00685B7A /* WCContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCContactCell.h; path = WeChat/Classes/Main/Controller/WCContactCell.h; sourceTree = SOURCE_ROOT; };
+		B35B83F61AF0C73B00685B7A /* WCContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCContactCell.m; path = WeChat/Classes/Main/Controller/WCContactCell.m; sourceTree = SOURCE_ROOT; };
+		B35B83FD1AF0CC4B00685B7A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B35B83FE1AF0CC4B00685B7A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B35B84001AF0DE5500685B7A /* WCAddContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCAddContactViewController.h; sourceTree = "<group>"; };
+		B35B84011AF0DE5500685B7A /* WCAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAddContactViewController.m; sourceTree = "<group>"; };
 		B37C201E1AE6381A005731DA /* WCRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRegisterViewController.h; sourceTree = "<group>"; };
 		B37C201F1AE6381A005731DA /* WCRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRegisterViewController.m; sourceTree = "<group>"; };
 		B39D40D81AE4E09900EE48F6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -644,7 +653,7 @@
 			children = (
 				B39D40DA1AE4E16B00EE48F6 /* Singleton */,
 				B330C6CD1AE2A6A400C3BB20 /* Common */,
-				B3AFC8BE1AE0F5020097A54E /* Other */,
+				B35B83FC1AF0CC4B00685B7A /* Other */,
 				B3AFC8BC1AE0F4DE0097A54E /* Login */,
 				B3AFC8BD1AE0F4F60097A54E /* Main */,
 				B34DACED1AE0F05600FE8D21 /* Lib */,
@@ -1456,9 +1465,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B35B83FC1AF0CC4B00685B7A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B35B83FD1AF0CC4B00685B7A /* AppDelegate.h */,
+				B35B83FE1AF0CC4B00685B7A /* AppDelegate.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		B3636B191AE8D9B2008CE662 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B35B83F51AF0C73B00685B7A /* WCContactCell.h */,
+				B35B83F61AF0C73B00685B7A /* WCContactCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1492,15 +1512,6 @@
 				B39D40D81AE4E09900EE48F6 /* Main.storyboard */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		B3AFC8BE1AE0F5020097A54E /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				B34DACCA1AE0F02200FE8D21 /* AppDelegate.h */,
-				B34DACCB1AE0F02200FE8D21 /* AppDelegate.m */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		B3AFC8C71AE110250097A54E /* Category */ = {
@@ -1551,6 +1562,10 @@
 				B317C36D1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m */,
 				B3FA7BFD1AEDDF3100061F68 /* WCDiscoverViewController.h */,
 				B3FA7BFE1AEDDF3100061F68 /* WCDiscoverViewController.m */,
+				B35B83F21AF0BFB900685B7A /* WCContactsViewController.h */,
+				B35B83F31AF0BFB900685B7A /* WCContactsViewController.m */,
+				B35B84001AF0DE5500685B7A /* WCAddContactViewController.h */,
+				B35B84011AF0DE5500685B7A /* WCAddContactViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1735,7 +1750,6 @@
 				B34DAE6D1AE0F05600FE8D21 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				B34DAE8C1AE0F05600FE8D21 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				B34DAE771AE0F05600FE8D21 /* XMPPvCardTempAdr.m in Sources */,
-				B34DACCC1AE0F02200FE8D21 /* AppDelegate.m in Sources */,
 				B31C175B1AEBEAE40045E18A /* WCEditProfileViewController.m in Sources */,
 				B317C36E1AEE2B6A00DAF2F4 /* WCChangeSexViewController.m in Sources */,
 				B34DAE611AE0F05600FE8D21 /* XMPPLastActivity.m in Sources */,
@@ -1780,9 +1794,11 @@
 				B34DAE961AE0F05600FE8D21 /* XMPPMessage+XEP_0172.m in Sources */,
 				B34DAE7D1AE0F05600FE8D21 /* XMPPvCardTempTel.m in Sources */,
 				B34DAE881AE0F05600FE8D21 /* XMPPSoftwareVersion.m in Sources */,
+				B35B84021AF0DE5500685B7A /* WCAddContactViewController.m in Sources */,
 				B34DAE3F1AE0F05600FE8D21 /* XMPPDigestMD5Authentication.m in Sources */,
 				B34DAE551AE0F05600FE8D21 /* XMPPRoster.xcdatamodel in Sources */,
 				B34DAE8D1AE0F05600FE8D21 /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				B35B83FF1AF0CC4B00685B7A /* AppDelegate.m in Sources */,
 				B34DAEA71AE0F05600FE8D21 /* DDList.m in Sources */,
 				B34DAEB41AE0F05600FE8D21 /* DispatchQueueLogFormatter.m in Sources */,
 				B33DB9581AE494DB0013EBF2 /* WCMeViewController.m in Sources */,
@@ -1794,6 +1810,7 @@
 				B34DAE9E1AE0F05600FE8D21 /* XMPPTime.m in Sources */,
 				B34DAE621AE0F05600FE8D21 /* XMPPPrivacy.m in Sources */,
 				B34DAE901AE0F05600FE8D21 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
+				B35B83F71AF0C73B00685B7A /* WCContactCell.m in Sources */,
 				B34DAE721AE0F05600FE8D21 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				B34DAE631AE0F05600FE8D21 /* XMPPRoom.xcdatamodeld in Sources */,
 				B3FA7BFC1AEDCBE500061F68 /* LCActionSheet.m in Sources */,
@@ -1851,6 +1868,7 @@
 				B34DAEA11AE0F05600FE8D21 /* XMPPAttentionModule.m in Sources */,
 				B34DAE541AE0F05600FE8D21 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				B34DAE691AE0F05600FE8D21 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				B35B83F41AF0BFB900685B7A /* WCContactsViewController.m in Sources */,
 				B34DAE9D1AE0F05600FE8D21 /* XMPPAutoTime.m in Sources */,
 				B34DAE4C1AE0F05600FE8D21 /* XMPPPresence.m in Sources */,
 				B34DAE6B1AE0F05600FE8D21 /* XMPPRoomMemoryStorage.m in Sources */,

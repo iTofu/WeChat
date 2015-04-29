@@ -33,4 +33,9 @@ singleton_implementation(WCUserInfo)
     self.logined = [defaults boolForKey:LoginedKey];
 }
 
+- (NSString *)JID {
+    
+    return [NSString stringWithFormat:@"%@@%@", self.user, HOST_NAME];
+}
+
 @end

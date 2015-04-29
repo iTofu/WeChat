@@ -55,6 +55,9 @@
 // 网络超时时间
 #define Timeout 10.0f
 
+// 主机地址
+#define HOST_NAME @"115.28.243.22"
+
 // 自定义打印信息
 #ifdef DEBUG
     #define WCLog(...) NSLog(@"%s--Line:%d\n> %@", __func__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])

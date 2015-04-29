@@ -17,6 +17,8 @@
 @property (nonatomic, copy) NSString *pwd;
 /** 是否已登录 */
 @property (nonatomic, assign, getter=isLogined) BOOL logined;
+/** JID */
+@property (nonatomic, copy) NSString *JID;
 
 /** 注册账号 */
 @property (nonatomic, copy) NSString *registerUser;

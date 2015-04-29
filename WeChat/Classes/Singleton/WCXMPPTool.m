@@ -18,10 +18,10 @@
  */
 
 @interface WCXMPPTool () <XMPPStreamDelegate> {
-    XMPPStream *_xmppStream;
     XMPPResultBlock _resultBlock;
     XMPPvCardCoreDataStorage *_vCardStorage;
     XMPPvCardAvatarModule *_vCardAvatar;
+    XMPPReconnect *_reconnect;
 }
 
 /** 初始化XMPPStream */
@@ -39,25 +39,52 @@
 
 singleton_implementation(WCXMPPTool)
 
-
 #pragma mark - 登录流程
 #pragma mark 初始化XMPPStream
 - (void)setupXMPPStream {
     
     _xmppStream = [[XMPPStream alloc] init];
     
+    // 自动连接模块
+    _reconnect = [[XMPPReconnect alloc] init];
+    [_reconnect activate:_xmppStream];
     
     // 设置名片和头像
     _vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
     _vCard = [[XMPPvCardTempModule alloc] initWithvCardStorage:_vCardStorage];
     [_vCard activate:_xmppStream];
     
+    // 花名册
+    _rosterStorage = [XMPPRosterCoreDataStorage sharedInstance];
+    _roster = [[XMPPRoster alloc] initWithRosterStorage:_rosterStorage];
+    [_roster activate:_xmppStream];
+    
     _vCardAvatar = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:_vCard];
     [_vCardAvatar activate:_xmppStream];
     
-    
     [_xmppStream addDelegate:self
                delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+}
+
+#pragma mark 移除XMPPStream
+- (void)teardownXMPPStream {
+    
+    [_xmppStream removeDelegate:self];
+    
+    [_vCard deactivate];
+    [_vCardAvatar deactivate];
+    [_reconnect deactivate];
+    [_roster deactivate];
+    
+    [_xmppStream disconnect];
+    
+    _vCard = nil;
+    _vCardAvatar = nil;
+    _vCardStorage = nil;
+    _roster = nil;
+    _rosterStorage = nil;
+    _reconnect = nil;
+    _xmppStream = nil;
 }
 
 #pragma mark 连接到服务器[传一个JID]
@@ -76,7 +103,7 @@ singleton_implementation(WCXMPPTool)
         user = [WCUserInfo sharedWCUserInfo].user;
     }
     
-    XMPPJID *myJID = [XMPPJID jidWithUser:user domain:@"115.28.243.22" resource:@"iPhone"];    // 用户JID
+    XMPPJID *myJID = [XMPPJID jidWithUser:user domain:HOST_NAME resource:@"iPhone"];    // 用户JID
     _xmppStream.myJID = myJID;
     
     _xmppStream.hostName = @"115.28.243.22";    // 域名
@@ -165,7 +192,7 @@ singleton_implementation(WCXMPPTool)
 #pragma mark 授权失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error {
     
-    [_xmppStream disconnect];
+//    [_xmppStream disconnect];
     
     WCLog(@"授权失败--%@", error);
     if (_resultBlock) {
@@ -228,6 +255,13 @@ singleton_implementation(WCXMPPTool)
     
     [[WCUserInfo sharedWCUserInfo] setLogined:NO];
     [[WCUserInfo sharedWCUserInfo] saveUserInfoToSandbox];
+}
+
+#pragma mark -
+
+- (void)dealloc {
+    
+    [self teardownXMPPStream];
 }
 
 @end

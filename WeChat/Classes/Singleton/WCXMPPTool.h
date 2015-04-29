@@ -31,10 +31,19 @@ typedef void (^XMPPResultBlock)(XMPPResultType type);
 
 singleton_interface(WCXMPPTool)
 
+
+@property (nonatomic, strong) XMPPStream *xmppStream;
+/** 名片\个人资料 */
 @property (nonatomic, strong) XMPPvCardTempModule *vCard;
+/** 花名册\好友 */
+@property (nonatomic, strong) XMPPRoster *roster;
+/** 花名册\好友 存储 */
+@property (nonatomic, strong) XMPPRosterCoreDataStorage *rosterStorage;
+
 
 /** 是否是注册 `YES`注册 `NO`登录 */
 @property (nonatomic, assign, getter=isRegisterOperation) BOOL registerOperation;
+
 
 /** 注册 */
 - (void)xmppRegister:(XMPPResultBlock)resultBlock;
